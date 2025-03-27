@@ -1,55 +1,168 @@
+/* App.css */
+
+/* Base Styles */
 .App {
   text-align: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Player Controls */
 .player-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #212529;
+  color: white;
+  padding: 1rem;
   border-top: 1px solid #444;
   z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .player-controls .progress {
+  height: 4px;
+  background-color: #495057;
+  cursor: pointer;
   transition: none;
 }
 
 .player-controls .progress-bar {
+  background-color: #20c997;
   transition: width 0.1s linear;
 }
 
-/* Ensure player controls don't overlap content */
-body {
-  padding-bottom: 100px;
+/* Ensure content doesn't hide behind player controls */
+.main-content {
+  padding-bottom: 150px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Card Styles */
+.music-card {
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.music-card img {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.music-card .card-body {
+  padding: 1.25rem;
+}
+
+/* Active Track Highlight */
+.active-track {
+  border: 2px solid #20c997 !important;
+  box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.25);
+}
+
+/* Buttons */
+.btn-action {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 50%;
 }
 
-.App-link {
-  color: #61dafb;
+/* Volume Control */
+.volume-control {
+  width: 100px;
+  display: inline-block;
+  margin: 0 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .music-card img {
+    height: 120px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .player-controls {
+    padding: 0.75rem;
   }
+  
+  .player-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .player-controls .col-md-4 {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.playing-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  color: #20c997;
+}
+
+/* Empty States */
+.empty-state {
+  padding: 3rem;
+  background-color: #f1f3f5;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #adb5bd;
+}
+
+/* Utility Classes */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Scrollbar Styles (for browsers that support it) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #868e96;
 }
