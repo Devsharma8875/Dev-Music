@@ -1,6 +1,6 @@
 # Dev-music
 
-v-music is a web application that allows users to search for music using the Youtube API and play the second song previews. It is built with React, Bootstrap.
+Dev-music is a web application that allows users to search for music using the Youtube API and play the second song previews. It is built with React, Bootstrap.
 
 ## Installation
 
