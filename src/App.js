@@ -149,14 +149,13 @@ function App() {
     document.body.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = () => {
-      audioRef.current = new window.YT.Player(null, {
+      audioRef.current = new window.YT.Player("youtube-player", {
         height: "0",
         width: "0",
         playerVars: {
           controls: 0,
           disablekb: 1,
           modestbranding: 1,
-          fs: 0
         },
         events: {
           onReady: onPlayerReady,
@@ -267,8 +266,7 @@ function App() {
         setPinnedMusic,
       }}
     >
-      {/* Hidden YouTube Player */}
-      <div id="youtube-player" className="youtube-player-hidden"></div>
+      <div id="youtube-player"></div>
 
       {/* Navbar Component */}
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
@@ -282,7 +280,7 @@ function App() {
               <input
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && fetchMusicData()}
+                onKeyPress={(e) => e.key === "Enter" && fetchMusicData()}
                 className="form-control me-2"
                 placeholder="Search songs..."
               />
@@ -294,7 +292,6 @@ function App() {
               </button>
             </div>
           )}
-
           <div>
             <button
               className={`btn btn-${
@@ -333,7 +330,7 @@ function App() {
       </nav>
 
       {/* Main Content */}
-      <div className="container mt-4" style={{ paddingBottom: "150px" }}>
+      <div className="container mt-4" style={{ paddingBottom: "100px" }}>
         {isLoading ? (
           <div className="text-center py-5">
             <div className="spinner-border text-success" role="status">
@@ -399,7 +396,7 @@ function App() {
                       <p className="card-text text-muted">{track.channel}</p>
                       <div className="d-flex flex-wrap justify-content-between gap-2">
                         <button
-                          className={`btn btn-sm btn-outline-${
+                          className={`btn btn-outline-${
                             likedMusic.some((t) => t.id === track.id)
                               ? "danger"
                               : "secondary"
@@ -418,7 +415,7 @@ function App() {
                           ></i>
                         </button>
                         <button
-                          className={`btn btn-sm btn-outline-${
+                          className={`btn btn-outline-${
                             pinnedMusic.some((t) => t.id === track.id)
                               ? "warning"
                               : "secondary"
@@ -437,7 +434,7 @@ function App() {
                           ></i>
                         </button>
                         <button
-                          className="btn btn-sm btn-outline-primary"
+                          className="btn btn-outline-primary"
                           onClick={(e) => {
                             e.stopPropagation();
                             playTrack(index);
