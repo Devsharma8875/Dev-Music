@@ -275,23 +275,24 @@ function App() {
             <i className="bi bi-music-note-list mx-3"></i> Dev-Music Player
           </a>
 
-          {!showLiked && !showPinned && (
-            <div className="d-flex">
-              <input
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && fetchMusicData()}
-                className="form-control me-2"
-                placeholder="Search songs..."
-              />
-              <button
-                onClick={fetchMusicData}
-                className="btn btn-outline-success"
-              >
-                Search
-              </button>
-            </div>
-          )}
+         {!showLiked && !showPinned && (
+  <div className="d-flex">
+    <input
+      value={keyword}
+      onChange={(e) => setKeyword(e.target.value)}
+      onKeyDown={(e) => e.key === "Enter" && fetchMusicData()}
+      className="form-control me-2"
+      placeholder="Search songs..."
+    />
+    <button
+      onClick={fetchMusicData}
+      className="btn btn-outline-success"
+    >
+      Search
+    </button>
+  </div>
+)}
+
           <div>
             <button
               className={`btn btn-${
